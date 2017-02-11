@@ -51,16 +51,16 @@ else
   echo "Lets go for it...."
 fi
 
-echo " "
-echo "A desktop image needs more free space,"
-echo " to be able to boot into the desktop."
-echo "Is this a desktop image ??  <Y/n>"
-read resp
-if [ "$resp" = "n" ]; then
-  FUDGE_FACTOR=4194304
-else
-  FUDGE_FACTOR=524288000
-fi
+#echo " "
+#echo "A desktop image needs more free space,"
+#echo " to be able to boot into the desktop."
+#echo "Is this a desktop image ??  <Y/n>"
+#read resp
+#if [ "$resp" = "n" ]; then
+#  FUDGE_FACTOR=4194304
+#else
+#  FUDGE_FACTOR=524288000
+#fi
 
 echo " "
 echo "Specifics of the image file"
@@ -150,9 +150,11 @@ echo "Unmountting $LOOP_DEV"
 losetup -d $LOOP_DEV
 
 echo " "
-echo "Calculating new image size in bytes "
-NEW_IMG_BYTES=$(($FILE_SYSTEM_BYTES + $PARTITION_START_BYTES + $FUDGE_FACTOR))
-echo $NEW_IMG_BYTES
+#echo "Calculating new image size in bytes "
+#NEW_IMG_BYTES=$(($FILE_SYSTEM_BYTES + $PARTITION_START_BYTES + $FUDGE_FACTOR))
+NEW_IMG_BYTES=8589934592
+echo "New size in GB"
+echo $NEW_IMG_BYTES / 1024 / 1024 /1024
 
 echo " "
 echo "Calculating 2nd partition end"
